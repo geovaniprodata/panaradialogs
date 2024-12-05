@@ -10,11 +10,10 @@ void main() {
 /// For more information read documentation at https://pub.dev/documentation/panara_dialogs/latest/
 ///
 
-ValueNotifier<ThemeMode> _themeMode =
-    ValueNotifier<ThemeMode>(ThemeMode.system);
+ValueNotifier<ThemeMode> _themeMode = ValueNotifier<ThemeMode>(ThemeMode.system);
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +36,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
