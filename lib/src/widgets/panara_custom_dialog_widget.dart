@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:panara_dialogs/panara_dialogs.dart';
+import 'package:panara_dialogs/src/constants/extensions.dart';
 import 'package:panara_dialogs/src/constants/strings.dart';
 import 'package:panara_dialogs/src/widgets/panara_button.dart';
 
@@ -100,47 +101,58 @@ class PanaraCustomDialogWidget extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Expanded(
-                    flex: 1,
-                    child: PanaraButton(
-                      onTap: onTapCancel,
-                      text: confirmButtonText ?? Strings.yes,
-                      bgColor: buttonTextColorYes ??
-                          (panaraDialogType == PanaraDialogType.normal
-                              ? PanaraColors.normal
-                              : panaraDialogType == PanaraDialogType.success
-                                  ? PanaraColors.success
-                                  : panaraDialogType == PanaraDialogType.warning
-                                      ? PanaraColors.warning
-                                      : panaraDialogType == PanaraDialogType.error
-                                          ? PanaraColors.error
-                                          : color ?? const Color(0xFF179DFF)),
-                      isOutlined: true,
+                children: []
+                  ..insertIf(
+                    confirmButtonText != null || onTapConfirm != null,
+                    0,
+                    Expanded(
+                      flex: 1,
+                      child: PanaraButton(
+                        onTap: onTapCancel,
+                        text: confirmButtonText ?? Strings.yes,
+                        bgColor: buttonTextColorYes ??
+                            (panaraDialogType == PanaraDialogType.normal
+                                ? PanaraColors.normal
+                                : panaraDialogType == PanaraDialogType.success
+                                    ? PanaraColors.success
+                                    : panaraDialogType == PanaraDialogType.warning
+                                        ? PanaraColors.warning
+                                        : panaraDialogType == PanaraDialogType.error
+                                            ? PanaraColors.error
+                                            : color ?? const Color(0xFF179DFF)),
+                        isOutlined: true,
+                      ),
+                    ),
+                  )
+                  ..insertIf(
+                    (confirmButtonText != null && onTapConfirm != null) && (cancelButtonText != null && onTapCancel != null),
+                    1,
+                    const SizedBox(
+                      width: 24,
+                    ),
+                  )
+                  ..insertIf(
+                    cancelButtonText != null && onTapCancel != null,
+                    2,
+                    Expanded(
+                      flex: 1,
+                      child: PanaraButton(
+                        onTap: onTapCancel,
+                        text: confirmButtonText ?? Strings.yes,
+                        bgColor: buttonTextColorYes ??
+                            (panaraDialogType == PanaraDialogType.normal
+                                ? PanaraColors.normal
+                                : panaraDialogType == PanaraDialogType.success
+                                    ? PanaraColors.success
+                                    : panaraDialogType == PanaraDialogType.warning
+                                        ? PanaraColors.warning
+                                        : panaraDialogType == PanaraDialogType.error
+                                            ? PanaraColors.error
+                                            : color ?? const Color(0xFF179DFF)),
+                        isOutlined: true,
+                      ),
                     ),
                   ),
-                  const SizedBox(
-                    width: 24,
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: PanaraButton(
-                      buttonTextColor: buttonTextColorNo ?? Colors.white,
-                      onTap: onTapConfirm,
-                      text: cancelButtonText ?? Strings.no,
-                      bgColor: panaraDialogType == PanaraDialogType.normal
-                          ? PanaraColors.normal
-                          : panaraDialogType == PanaraDialogType.success
-                              ? PanaraColors.success
-                              : panaraDialogType == PanaraDialogType.warning
-                                  ? PanaraColors.warning
-                                  : panaraDialogType == PanaraDialogType.error
-                                      ? PanaraColors.error
-                                      : color ?? const Color(0xFF179DFF),
-                      isOutlined: false,
-                    ),
-                  ),
-                ],
               )
             ],
           ),
