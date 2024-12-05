@@ -18,7 +18,7 @@ class PanaraCustomDialogWidget extends StatelessWidget {
   final String? cancelButtonText;
   final VoidCallback? onTapConfirm;
   final VoidCallback? onTapCancel;
-  final PanaraDialogType panaraDialogType;
+  final PanaraDialogType? panaraDialogType;
   final Color? buttonColorYes;
   final Color? buttonTextColorYes;
   final Color? buttonColorNo;
