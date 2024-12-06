@@ -24,3 +24,6 @@ export 'src/constants/strings.dart';
 
 /// export [ButtonData] Model
 export 'src/models/buttons.dart';
+
+/// export extensions
+export 'src/extensions.dart';

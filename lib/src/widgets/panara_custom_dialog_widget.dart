@@ -55,6 +55,20 @@ class PanaraCustomDialogWidget extends StatelessWidget {
         Navigator.pop(context);
       };
     }
+
+    if (confirmButton != null && cancelButton != null) {
+      if (confirmButton!.buttonText != null) {
+        var text = confirmButton!.buttonText!;
+
+        confirmButton!.buttonText = text.passToTitle();
+      }
+
+      if (cancelButton!.buttonText != null) {
+        var text = cancelButton!.buttonText!;
+
+        cancelButton!.buttonText = text.passToTitle();
+      }
+    }
   }
 
   @override
