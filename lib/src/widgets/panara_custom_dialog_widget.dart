@@ -76,96 +76,101 @@ class PanaraCustomDialogWidget extends StatelessWidget {
     final ThemeData theme = Theme.of(context);
     _checkButtons(context);
 
-    return Align(
-      alignment: Alignment.center,
-      child: Material(
-        color: Colors.transparent,
-        child: Container(
-          constraints: const BoxConstraints(
-            maxWidth: 340,
-          ),
-          margin: margin ?? const EdgeInsets.all(24),
-          padding: padding ?? const EdgeInsets.all(24),
-          decoration: BoxDecoration(
-            color: backgroundColor ?? theme.dialogBackgroundColor,
-            borderRadius: BorderRadius.circular(15),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.center,
-            crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.center,
-            children: [
-              if (!noImage)
-                Image.asset(
-                  imagePath ?? 'assets/${isInfo ? 'info' : 'confirm'}.png',
-                  package: imagePath != null ? null : 'panara_dialogs',
-                  width: 84,
-                  height: 84,
-                  color: imagePath != null
-                      ? null
-                      : (panaraDialogType == PanaraDialogType.normal
-                          ? PanaraColors.normal
-                          : panaraDialogType == PanaraDialogType.success
-                              ? PanaraColors.success
-                              : panaraDialogType == PanaraDialogType.warning
-                                  ? PanaraColors.warning
-                                  : panaraDialogType == PanaraDialogType.error
-                                      ? PanaraColors.error
-                                      : color),
-                ),
-              if (!noImage)
-                const SizedBox(
-                  height: 24,
-                ),
-              content,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: []
-                  ..insertIf(
-                    confirmButton != null,
-                    0,
-                    Expanded(
-                      flex: 1,
-                      child: PanaraButton(
-                        onTap: confirmButton?.callback,
-                        text: confirmButton?.buttonText ?? Strings.sim,
-                        bgColor: confirmButton?.buttonColor ??
-                            (panaraDialogType == PanaraDialogType.normal
-                                ? PanaraColors.normal
-                                : panaraDialogType == PanaraDialogType.success
-                                    ? PanaraColors.success
-                                    : panaraDialogType == PanaraDialogType.warning
-                                        ? PanaraColors.warning
-                                        : panaraDialogType == PanaraDialogType.error
-                                            ? PanaraColors.error
-                                            : color ?? const Color(0xFF179DFF)),
-                        isOutlined: true,
-                      ),
-                    ),
-                  )
-                  ..insertIf(
-                    (confirmButton != null && cancelButton != null),
-                    1,
-                    const SizedBox(
-                      width: 24,
-                    ),
-                  )
-                  ..insertIf(
-                    cancelButton != null,
-                    2,
-                    Expanded(
-                      flex: 1,
-                      child: PanaraButton(
-                        onTap: cancelButton?.callback,
-                        text: cancelButton?.buttonText ?? Strings.nao,
-                        bgColor: cancelButton?.buttonColor ?? const Color(0xFF179DFF),
-                        isOutlined: false,
-                      ),
-                    ),
+    return Padding(
+      padding: EdgeInsets.only(
+        bottom: MediaQuery.of(context).viewInsets.bottom,
+      ),
+      child: Align(
+        alignment: Alignment.center,
+        child: Material(
+          color: Colors.transparent,
+          child: Container(
+            constraints: const BoxConstraints(
+              maxWidth: 340,
+            ),
+            margin: margin ?? const EdgeInsets.all(24),
+            padding: padding ?? const EdgeInsets.all(24),
+            decoration: BoxDecoration(
+              color: backgroundColor ?? theme.dialogBackgroundColor,
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.center,
+              crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.center,
+              children: [
+                if (!noImage)
+                  Image.asset(
+                    imagePath ?? 'assets/${isInfo ? 'info' : 'confirm'}.png',
+                    package: imagePath != null ? null : 'panara_dialogs',
+                    width: 84,
+                    height: 84,
+                    color: imagePath != null
+                        ? null
+                        : (panaraDialogType == PanaraDialogType.normal
+                            ? PanaraColors.normal
+                            : panaraDialogType == PanaraDialogType.success
+                                ? PanaraColors.success
+                                : panaraDialogType == PanaraDialogType.warning
+                                    ? PanaraColors.warning
+                                    : panaraDialogType == PanaraDialogType.error
+                                        ? PanaraColors.error
+                                        : color),
                   ),
-              )
-            ],
+                if (!noImage)
+                  const SizedBox(
+                    height: 24,
+                  ),
+                content,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: []
+                    ..insertIf(
+                      confirmButton != null,
+                      0,
+                      Expanded(
+                        flex: 1,
+                        child: PanaraButton(
+                          onTap: confirmButton?.callback,
+                          text: confirmButton?.buttonText ?? Strings.sim,
+                          bgColor: confirmButton?.buttonColor ??
+                              (panaraDialogType == PanaraDialogType.normal
+                                  ? PanaraColors.normal
+                                  : panaraDialogType == PanaraDialogType.success
+                                      ? PanaraColors.success
+                                      : panaraDialogType == PanaraDialogType.warning
+                                          ? PanaraColors.warning
+                                          : panaraDialogType == PanaraDialogType.error
+                                              ? PanaraColors.error
+                                              : color ?? const Color(0xFF179DFF)),
+                          isOutlined: true,
+                        ),
+                      ),
+                    )
+                    ..insertIf(
+                      (confirmButton != null && cancelButton != null),
+                      1,
+                      const SizedBox(
+                        width: 24,
+                      ),
+                    )
+                    ..insertIf(
+                      cancelButton != null,
+                      2,
+                      Expanded(
+                        flex: 1,
+                        child: PanaraButton(
+                          onTap: cancelButton?.callback,
+                          text: cancelButton?.buttonText ?? Strings.nao,
+                          bgColor: cancelButton?.buttonColor ?? const Color(0xFF179DFF),
+                          isOutlined: false,
+                        ),
+                      ),
+                    ),
+                )
+              ],
+            ),
           ),
         ),
       ),
