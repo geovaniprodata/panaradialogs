@@ -44,9 +44,10 @@ class PanaraCustomDialogWidget extends StatelessWidget {
   void _checkButtons(BuildContext context) {
     if (confirmButton != null) {
       confirmButton!.buttonText ??= Strings.sim;
+      var confirmFunction = confirmButton!.callback;
       confirmButton!.callback = () {
-        if (confirmButton!.callback != null) {
-          confirmButton!.callback!.call();
+        if (confirmFunction != null) {
+          confirmFunction();
         }
 
         Navigator.pop(context);
@@ -57,9 +58,10 @@ class PanaraCustomDialogWidget extends StatelessWidget {
       cancelButton!.buttonColor ??= isInfo ? color ?? const Color(0xFF179DFF) : Colors.red.shade500;
 
       cancelButton!.buttonText ??= Strings.nao;
+      var cancelFunction = cancelButton!.callback;
       cancelButton!.callback = () {
-        if (cancelButton!.callback != null) {
-          cancelButton!.callback!.call();
+        if (cancelFunction != null) {
+          cancelFunction();
         }
 
         Navigator.pop(context);
