@@ -46,7 +46,7 @@ class PanaraCustomDialogWidget extends StatelessWidget {
       confirmButton!.buttonText ??= Strings.sim;
       confirmButton!.callback = () {
         if (confirmButton!.callback != null) {
-          confirmButton!.callback!();
+          confirmButton!.callback!.call();
         }
 
         Navigator.pop(context);
@@ -59,7 +59,7 @@ class PanaraCustomDialogWidget extends StatelessWidget {
       cancelButton!.buttonText ??= Strings.nao;
       cancelButton!.callback = () {
         if (cancelButton!.callback != null) {
-          cancelButton!.callback!();
+          cancelButton!.callback!.call();
         }
 
         Navigator.pop(context);
