@@ -35,6 +35,7 @@ class PanaraCustomDialog {
     bool isInfo = false,
     ButtonData? confirmButton,
     ButtonData? cancelButton,
+    IconData? icon,
   }) =>
       showDialog<T>(
         barrierDismissible: barrierDismissible,
@@ -53,6 +54,7 @@ class PanaraCustomDialog {
           content: content,
           confirmButton: confirmButton,
           cancelButton: cancelButton,
+          icon: icon,
         ),
       );
 
@@ -77,6 +79,7 @@ class PanaraCustomDialog {
     bool isInfo = false,
     ButtonData? confirmButton,
     ButtonData? cancelButton,
+    IconData? icon,
   }) =>
       showGeneralDialog<T>(
         barrierDismissible: barrierDismissible,
@@ -104,6 +107,7 @@ class PanaraCustomDialog {
           content: content,
           confirmButton: confirmButton,
           cancelButton: cancelButton,
+          icon: icon,
         ),
       );
 
@@ -128,6 +132,7 @@ class PanaraCustomDialog {
     bool isInfo = false,
     ButtonData? confirmButton,
     ButtonData? cancelButton,
+    IconData? icon,
   }) =>
       showGeneralDialog<T>(
         barrierDismissible: barrierDismissible,
@@ -155,6 +160,7 @@ class PanaraCustomDialog {
           content: content,
           confirmButton: confirmButton,
           cancelButton: cancelButton,
+          icon: icon,
         ),
       );
 
@@ -179,6 +185,7 @@ class PanaraCustomDialog {
     bool isInfo = false,
     ButtonData? confirmButton,
     ButtonData? cancelButton,
+    IconData? icon,
   }) =>
       showGeneralDialog<T>(
         barrierDismissible: barrierDismissible,
@@ -206,6 +213,7 @@ class PanaraCustomDialog {
           content: content,
           confirmButton: confirmButton,
           cancelButton: cancelButton,
+          icon: icon,
         ),
       );
 
@@ -230,6 +238,7 @@ class PanaraCustomDialog {
     bool isInfo = false,
     ButtonData? confirmButton,
     ButtonData? cancelButton,
+    IconData? icon,
   }) =>
       showGeneralDialog<T>(
         barrierDismissible: barrierDismissible,
@@ -257,6 +266,7 @@ class PanaraCustomDialog {
           content: content,
           confirmButton: confirmButton,
           cancelButton: cancelButton,
+          icon: icon,
         ),
       );
 
@@ -281,6 +291,7 @@ class PanaraCustomDialog {
     bool isInfo = false,
     ButtonData? confirmButton,
     ButtonData? cancelButton,
+    IconData? icon,
   }) =>
       showGeneralDialog<T>(
         barrierDismissible: barrierDismissible,
@@ -308,6 +319,7 @@ class PanaraCustomDialog {
           content: content,
           confirmButton: confirmButton,
           cancelButton: cancelButton,
+          icon: icon,
         ),
       );
 
@@ -332,6 +344,7 @@ class PanaraCustomDialog {
     bool isInfo = false,
     ButtonData? confirmButton,
     ButtonData? cancelButton,
+    IconData? icon,
   }) =>
       showGeneralDialog<T>(
         barrierDismissible: barrierDismissible,
@@ -359,6 +372,7 @@ class PanaraCustomDialog {
           content: content,
           confirmButton: confirmButton,
           cancelButton: cancelButton,
+          icon: icon,
         ),
       );
 
@@ -383,6 +397,7 @@ class PanaraCustomDialog {
     bool isInfo = false,
     ButtonData? confirmButton,
     ButtonData? cancelButton,
+    IconData? icon,
   }) =>
       showGeneralDialog<T>(
         barrierDismissible: barrierDismissible,
@@ -410,6 +425,7 @@ class PanaraCustomDialog {
           content: content,
           confirmButton: confirmButton,
           cancelButton: cancelButton,
+          icon: icon,
         ),
       );
 }

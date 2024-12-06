@@ -21,6 +21,7 @@ class PanaraCustomDialogWidget extends StatelessWidget {
   final String? imagePath;
   final bool noImage;
   final bool isInfo;
+  final IconData? icon;
 
   const PanaraCustomDialogWidget({
     Key? key,
@@ -37,6 +38,7 @@ class PanaraCustomDialogWidget extends StatelessWidget {
     this.isInfo = false,
     this.cancelButton,
     this.confirmButton,
+    this.icon,
   }) : super(key: key);
 
   void _checkButtons(BuildContext context) {
@@ -100,28 +102,47 @@ class PanaraCustomDialogWidget extends StatelessWidget {
               crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.center,
               children: [
                 if (!noImage)
-                  Image.asset(
-                    imagePath ?? 'assets/${isInfo ? 'info' : 'confirm'}.png',
-                    package: imagePath != null ? null : 'panara_dialogs',
-                    width: 84,
-                    height: 84,
-                    color: imagePath != null
-                        ? null
-                        : (panaraDialogType == PanaraDialogType.normal
-                            ? PanaraColors.normal
-                            : panaraDialogType == PanaraDialogType.success
-                                ? PanaraColors.success
-                                : panaraDialogType == PanaraDialogType.warning
-                                    ? PanaraColors.warning
-                                    : panaraDialogType == PanaraDialogType.error
-                                        ? PanaraColors.error
-                                        : color),
-                  ),
+                  icon != null
+                      ? Icon(
+                          icon,
+                          size: 84,
+                          color: imagePath != null
+                              ? null
+                              : (panaraDialogType == PanaraDialogType.normal
+                                  ? PanaraColors.normal
+                                  : panaraDialogType == PanaraDialogType.success
+                                      ? PanaraColors.success
+                                      : panaraDialogType == PanaraDialogType.warning
+                                          ? PanaraColors.warning
+                                          : panaraDialogType == PanaraDialogType.error
+                                              ? PanaraColors.error
+                                              : color),
+                        )
+                      : Image.asset(
+                          imagePath ?? 'assets/${isInfo ? 'info' : 'confirm'}.png',
+                          package: imagePath != null ? null : 'panara_dialogs',
+                          width: 84,
+                          height: 84,
+                          color: imagePath != null
+                              ? null
+                              : (panaraDialogType == PanaraDialogType.normal
+                                  ? PanaraColors.normal
+                                  : panaraDialogType == PanaraDialogType.success
+                                      ? PanaraColors.success
+                                      : panaraDialogType == PanaraDialogType.warning
+                                          ? PanaraColors.warning
+                                          : panaraDialogType == PanaraDialogType.error
+                                              ? PanaraColors.error
+                                              : color),
+                        ),
                 if (!noImage)
                   const SizedBox(
                     height: 24,
                   ),
                 content,
+                const SizedBox(
+                  height: 16,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
