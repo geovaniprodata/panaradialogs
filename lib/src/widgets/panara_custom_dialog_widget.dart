@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:panara_dialogs/panara_dialogs.dart';
 import 'package:panara_dialogs/src/constants/extensions.dart';
-import 'package:panara_dialogs/src/constants/strings.dart';
 import 'package:panara_dialogs/src/widgets/panara_button.dart';
 
 ///
@@ -15,15 +14,9 @@ class PanaraCustomDialogWidget extends StatelessWidget {
   final Color? backgroundColor;
   final MainAxisAlignment? mainAxisAlignment;
   final CrossAxisAlignment? crossAxisAlignment;
-  final String? confirmButtonText;
-  final String? cancelButtonText;
-  final VoidCallback? onTapConfirm;
-  final VoidCallback? onTapCancel;
+  final ButtonData? confirmButton;
+  final ButtonData? cancelButton;
   final PanaraDialogType? panaraDialogType;
-  final Color? buttonColorYes;
-  final Color? buttonTextColorYes;
-  final Color? buttonColorNo;
-  final Color? buttonTextColorNo;
   final Color? color;
   final String? imagePath;
   final bool noImage;
@@ -37,24 +30,37 @@ class PanaraCustomDialogWidget extends StatelessWidget {
     this.backgroundColor,
     this.mainAxisAlignment,
     this.crossAxisAlignment,
-    this.confirmButtonText,
-    this.cancelButtonText,
-    this.onTapConfirm,
-    this.onTapCancel,
     this.panaraDialogType = PanaraDialogType.normal,
-    this.buttonTextColorYes,
-    this.buttonTextColorNo,
     this.noImage = false,
     this.imagePath,
     this.color,
-    this.buttonColorYes,
-    this.buttonColorNo,
     this.isInfo = false,
+    this.cancelButton,
+    this.confirmButton,
   }) : super(key: key);
+
+  void _checkButtons(BuildContext context) {
+    if (confirmButton != null) {
+      confirmButton!.buttonText ??= Strings.yes;
+      confirmButton!.callback ??= () {
+        Navigator.pop(context);
+      };
+    }
+
+    if (cancelButton != null) {
+      cancelButton!.buttonColor ??= isInfo ? color ?? const Color(0xFF179DFF) : Colors.red.shade500;
+
+      cancelButton!.buttonText ??= Strings.no;
+      cancelButton!.callback ??= () {
+        Navigator.pop(context);
+      };
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
+    _checkButtons(context);
 
     return Align(
       alignment: Alignment.center,
@@ -103,14 +109,14 @@ class PanaraCustomDialogWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: []
                   ..insertIf(
-                    confirmButtonText != null || onTapConfirm != null,
+                    confirmButton != null,
                     0,
                     Expanded(
                       flex: 1,
                       child: PanaraButton(
-                        onTap: onTapCancel,
-                        text: confirmButtonText ?? Strings.yes,
-                        bgColor: buttonTextColorYes ??
+                        onTap: confirmButton?.callback,
+                        text: confirmButton?.buttonText ?? Strings.yes,
+                        bgColor: confirmButton?.buttonColor ??
                             (panaraDialogType == PanaraDialogType.normal
                                 ? PanaraColors.normal
                                 : panaraDialogType == PanaraDialogType.success
@@ -125,31 +131,22 @@ class PanaraCustomDialogWidget extends StatelessWidget {
                     ),
                   )
                   ..insertIf(
-                    (confirmButtonText != null && onTapConfirm != null) && (cancelButtonText != null && onTapCancel != null),
+                    (confirmButton != null && cancelButton != null),
                     1,
                     const SizedBox(
                       width: 24,
                     ),
                   )
                   ..insertIf(
-                    cancelButtonText != null && onTapCancel != null,
+                    cancelButton != null,
                     2,
                     Expanded(
                       flex: 1,
                       child: PanaraButton(
-                        onTap: onTapCancel,
-                        text: confirmButtonText ?? Strings.yes,
-                        bgColor: buttonTextColorYes ??
-                            (panaraDialogType == PanaraDialogType.normal
-                                ? PanaraColors.normal
-                                : panaraDialogType == PanaraDialogType.success
-                                    ? PanaraColors.success
-                                    : panaraDialogType == PanaraDialogType.warning
-                                        ? PanaraColors.warning
-                                        : panaraDialogType == PanaraDialogType.error
-                                            ? PanaraColors.error
-                                            : color ?? const Color(0xFF179DFF)),
-                        isOutlined: true,
+                        onTap: cancelButton?.callback,
+                        text: cancelButton?.buttonText ?? Strings.no,
+                        bgColor: cancelButton?.buttonColor ?? const Color(0xFF179DFF),
+                        isOutlined: false,
                       ),
                     ),
                   ),

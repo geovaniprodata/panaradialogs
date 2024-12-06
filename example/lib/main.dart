@@ -13,7 +13,7 @@ void main() {
 ValueNotifier<ThemeMode> _themeMode = ValueNotifier<ThemeMode>(ThemeMode.system);
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({super.key, required this.title});
   final String title;
 
   @override
@@ -385,7 +385,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               text: "Visit our website",
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  print("open website");
+                                  // print("open website");
                                 },
                               style: const TextStyle(
                                 color: Colors.blue,

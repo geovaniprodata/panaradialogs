@@ -18,3 +18,9 @@ export 'src/animations.dart';
 
 /// exports Colors used in build-in types.
 export 'src/constants/colors.dart';
+
+/// export Strings constants
+export 'src/constants/strings.dart';
+
+/// export [ButtonData] Model
+export 'src/models/buttons.dart';
