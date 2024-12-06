@@ -9,7 +9,7 @@ import 'package:panara_dialogs/src/widgets/panara_button.dart';
 /// Fully customizable.
 ///
 class PanaraCustomDialogWidget extends StatelessWidget {
-  final List<Widget> children;
+  final Widget content;
   final EdgeInsets? padding;
   final EdgeInsets? margin;
   final Color? backgroundColor;
@@ -31,7 +31,7 @@ class PanaraCustomDialogWidget extends StatelessWidget {
 
   const PanaraCustomDialogWidget({
     Key? key,
-    required this.children,
+    required this.content,
     this.padding,
     this.margin,
     this.backgroundColor,
@@ -97,7 +97,7 @@ class PanaraCustomDialogWidget extends StatelessWidget {
                 const SizedBox(
                   height: 24,
                 ),
-              ...children,
+              content,
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,

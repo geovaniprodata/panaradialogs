@@ -21,7 +21,7 @@ class PanaraCustomDialog {
   ///
   static Future<T?> show<T>(
     BuildContext context, {
-    required List<Widget> children,
+    required Widget content,
     EdgeInsets? margin,
     EdgeInsets? padding,
     Color? backgroundColor,
@@ -64,7 +64,7 @@ class PanaraCustomDialog {
           imagePath: imagePath,
           noImage: noImage,
           isInfo: isInfo,
-          children: children,
+          content: content,
         ),
       );
 
@@ -75,7 +75,7 @@ class PanaraCustomDialog {
   ///
   static Future<T?> showAnimatedFromLeft<T extends Object?>(
     BuildContext context, {
-    required List<Widget> children,
+    required Widget content,
     EdgeInsets? margin,
     EdgeInsets? padding,
     Color? backgroundColor,
@@ -127,7 +127,7 @@ class PanaraCustomDialog {
           imagePath: imagePath,
           noImage: noImage,
           isInfo: isInfo,
-          children: children,
+          content: content,
         ),
       );
 
@@ -138,7 +138,7 @@ class PanaraCustomDialog {
   ///
   static Future<T?> showAnimatedFromRight<T extends Object?>(
     BuildContext context, {
-    required List<Widget> children,
+    required Widget content,
     EdgeInsets? margin,
     EdgeInsets? padding,
     Color? backgroundColor,
@@ -190,7 +190,7 @@ class PanaraCustomDialog {
           imagePath: imagePath,
           noImage: noImage,
           isInfo: isInfo,
-          children: children,
+          content: content,
         ),
       );
 
@@ -201,7 +201,7 @@ class PanaraCustomDialog {
   ///
   static Future<T?> showAnimatedFromTop<T extends Object?>(
     BuildContext context, {
-    required List<Widget> children,
+    required Widget content,
     EdgeInsets? margin,
     EdgeInsets? padding,
     Color? backgroundColor,
@@ -253,7 +253,7 @@ class PanaraCustomDialog {
           imagePath: imagePath,
           noImage: noImage,
           isInfo: isInfo,
-          children: children,
+          content: content,
         ),
       );
 
@@ -264,7 +264,7 @@ class PanaraCustomDialog {
   ///
   static Future<T?> showAnimatedFromBottom<T extends Object?>(
     BuildContext context, {
-    required List<Widget> children,
+    required Widget content,
     EdgeInsets? margin,
     EdgeInsets? padding,
     Color? backgroundColor,
@@ -316,7 +316,7 @@ class PanaraCustomDialog {
           imagePath: imagePath,
           noImage: noImage,
           isInfo: isInfo,
-          children: children,
+          content: content,
         ),
       );
 
@@ -327,7 +327,7 @@ class PanaraCustomDialog {
   ///
   static Future<T?> showAnimatedGrow<T extends Object?>(
     BuildContext context, {
-    required List<Widget> children,
+    required Widget content,
     EdgeInsets? margin,
     EdgeInsets? padding,
     Color? backgroundColor,
@@ -379,7 +379,7 @@ class PanaraCustomDialog {
           imagePath: imagePath,
           noImage: noImage,
           isInfo: isInfo,
-          children: children,
+          content: content,
         ),
       );
 
@@ -390,7 +390,7 @@ class PanaraCustomDialog {
   ///
   static Future<T?> showAnimatedShrink<T extends Object?>(
     BuildContext context, {
-    required List<Widget> children,
+    required Widget content,
     EdgeInsets? margin,
     EdgeInsets? padding,
     Color? backgroundColor,
@@ -442,7 +442,7 @@ class PanaraCustomDialog {
           imagePath: imagePath,
           noImage: noImage,
           isInfo: isInfo,
-          children: children,
+          content: content,
         ),
       );
 
@@ -453,7 +453,7 @@ class PanaraCustomDialog {
   ///
   static Future<T?> showAnimatedFade<T extends Object?>(
     BuildContext context, {
-    required List<Widget> children,
+    required Widget content,
     EdgeInsets? margin,
     EdgeInsets? padding,
     Color? backgroundColor,
@@ -505,7 +505,7 @@ class PanaraCustomDialog {
           imagePath: imagePath,
           noImage: noImage,
           isInfo: isInfo,
-          children: children,
+          content: content,
         ),
       );
 }
