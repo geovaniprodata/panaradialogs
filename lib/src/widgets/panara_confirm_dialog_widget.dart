@@ -14,6 +14,7 @@ class PanaraConfirmDialogWidget extends StatelessWidget {
   final String cancelButtonText;
   final VoidCallback onTapConfirm;
   final VoidCallback onTapCancel;
+  final VoidCallback? onDismiss;
   final PanaraDialogType panaraDialogType;
   final Color? color;
   final Color? backgroundColor;
@@ -21,6 +22,7 @@ class PanaraConfirmDialogWidget extends StatelessWidget {
   final Color? buttonTextColor;
   final EdgeInsets? padding;
   final EdgeInsets? margin;
+  final bool barrierDismissable;
 
   /// If you don't want any icon or image, you toggle it to true.
   final bool noImage;
@@ -33,6 +35,7 @@ class PanaraConfirmDialogWidget extends StatelessWidget {
     required this.cancelButtonText,
     required this.onTapConfirm,
     required this.onTapCancel,
+    this.onDismiss,
     required this.panaraDialogType,
     this.color,
     this.backgroundColor,
@@ -41,134 +44,143 @@ class PanaraConfirmDialogWidget extends StatelessWidget {
     this.imagePath,
     this.padding = const EdgeInsets.all(24),
     this.margin = const EdgeInsets.all(24),
+    this.barrierDismissable = true,
     required this.noImage,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    return Align(
-      alignment: Alignment.center,
-      child: Material(
-        color: Colors.transparent,
-        child: Container(
-          constraints: const BoxConstraints(
-            maxWidth: 340,
-          ),
-          margin: margin ?? const EdgeInsets.all(24),
-          padding: padding ?? const EdgeInsets.all(24),
-          decoration: BoxDecoration(
-            color: backgroundColor ?? theme.dialogBackgroundColor,
-            borderRadius: BorderRadius.circular(15),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              if (!noImage)
-                Image.asset(
-                  imagePath ?? 'assets/confirm.png',
-                  package: imagePath != null ? null : 'panara_dialogs',
-                  width: 84,
-                  height: 84,
-                  color: imagePath != null
-                      ? null
-                      : (panaraDialogType == PanaraDialogType.normal
-                          ? PanaraColors.normal
-                          : panaraDialogType == PanaraDialogType.success
-                              ? PanaraColors.success
-                              : panaraDialogType == PanaraDialogType.warning
-                                  ? PanaraColors.warning
-                                  : panaraDialogType == PanaraDialogType.error
-                                      ? PanaraColors.error
-                                      : color),
-                ),
-              if (!noImage)
-                const SizedBox(
-                  height: 24,
-                ),
-              if (title != null)
+    return PopScope(
+      canPop: barrierDismissable,
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop && onDismiss != null) {
+          onDismiss!();
+        }
+      },
+      child: Align(
+        alignment: Alignment.center,
+        child: Material(
+          color: Colors.transparent,
+          child: Container(
+            constraints: const BoxConstraints(
+              maxWidth: 340,
+            ),
+            margin: margin ?? const EdgeInsets.all(24),
+            padding: padding ?? const EdgeInsets.all(24),
+            decoration: BoxDecoration(
+              color: backgroundColor ?? theme.dialogBackgroundColor,
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                if (!noImage)
+                  Image.asset(
+                    imagePath ?? 'assets/confirm.png',
+                    package: imagePath != null ? null : 'panara_dialogs',
+                    width: 84,
+                    height: 84,
+                    color: imagePath != null
+                        ? null
+                        : (panaraDialogType == PanaraDialogType.normal
+                            ? PanaraColors.normal
+                            : panaraDialogType == PanaraDialogType.success
+                                ? PanaraColors.success
+                                : panaraDialogType == PanaraDialogType.warning
+                                    ? PanaraColors.warning
+                                    : panaraDialogType == PanaraDialogType.error
+                                        ? PanaraColors.error
+                                        : color),
+                  ),
+                if (!noImage)
+                  const SizedBox(
+                    height: 24,
+                  ),
+                if (title != null)
+                  Text(
+                    title ?? "",
+                    style: TextStyle(
+                      fontSize: 24,
+                      height: 1.2,
+                      fontWeight: FontWeight.w600,
+                      color: textColor,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                if (title != null)
+                  const SizedBox(
+                    height: 5,
+                  ),
                 Text(
-                  title ?? "",
+                  message,
                   style: TextStyle(
-                    fontSize: 24,
-                    height: 1.2,
-                    fontWeight: FontWeight.w600,
                     color: textColor,
+                    height: 1.5,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w400,
                   ),
                   textAlign: TextAlign.center,
                 ),
-              if (title != null)
                 const SizedBox(
-                  height: 5,
+                  height: 30,
                 ),
-              Text(
-                message,
-                style: TextStyle(
-                  color: textColor,
-                  height: 1.5,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w400,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Expanded(
-                    flex: 1,
-                    child: PanaraButton(
-                      buttonTextColor: buttonTextColor ?? Colors.white,
-                      onTap: () {
-                        onTapConfirm();
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: PanaraButton(
+                        buttonTextColor: buttonTextColor ?? Colors.white,
+                        onTap: () {
+                          onTapConfirm();
 
-                        Navigator.pop(context);
-                      },
-                      text: confirmButtonText,
-                      bgColor: panaraDialogType == PanaraDialogType.normal
-                          ? PanaraColors.normal
-                          : panaraDialogType == PanaraDialogType.success
-                              ? PanaraColors.success
-                              : panaraDialogType == PanaraDialogType.warning
-                                  ? PanaraColors.warning
-                                  : panaraDialogType == PanaraDialogType.error
-                                      ? PanaraColors.error
-                                      : color ?? const Color(0xFF179DFF),
-                      isOutlined: false,
+                          Navigator.pop(context);
+                        },
+                        text: confirmButtonText,
+                        bgColor: panaraDialogType == PanaraDialogType.normal
+                            ? PanaraColors.normal
+                            : panaraDialogType == PanaraDialogType.success
+                                ? PanaraColors.success
+                                : panaraDialogType == PanaraDialogType.warning
+                                    ? PanaraColors.warning
+                                    : panaraDialogType == PanaraDialogType.error
+                                        ? PanaraColors.error
+                                        : color ?? const Color(0xFF179DFF),
+                        isOutlined: false,
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 24,
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: PanaraButton(
-                      onTap: () {
-                        onTapCancel();
+                    const SizedBox(
+                      width: 24,
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: PanaraButton(
+                        onTap: () {
+                          onTapCancel();
 
-                        Navigator.pop(context);
-                      },
-                      text: cancelButtonText,
-                      bgColor: panaraDialogType == PanaraDialogType.normal
-                          ? PanaraColors.normal
-                          : panaraDialogType == PanaraDialogType.success
-                              ? PanaraColors.success
-                              : panaraDialogType == PanaraDialogType.warning
-                                  ? PanaraColors.warning
-                                  : panaraDialogType == PanaraDialogType.error
-                                      ? PanaraColors.error
-                                      : color ?? const Color(0xFF179DFF),
-                      isOutlined: true,
+                          Navigator.pop(context);
+                        },
+                        text: cancelButtonText,
+                        bgColor: panaraDialogType == PanaraDialogType.normal
+                            ? PanaraColors.normal
+                            : panaraDialogType == PanaraDialogType.success
+                                ? PanaraColors.success
+                                : panaraDialogType == PanaraDialogType.warning
+                                    ? PanaraColors.warning
+                                    : panaraDialogType == PanaraDialogType.error
+                                        ? PanaraColors.error
+                                        : color ?? const Color(0xFF179DFF),
+                        isOutlined: true,
+                      ),
                     ),
-                  ),
-                ],
-              )
-            ],
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),

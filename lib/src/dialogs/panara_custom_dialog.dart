@@ -35,6 +35,7 @@ class PanaraCustomDialog {
     bool isInfo = false,
     ButtonData? confirmButton,
     ButtonData? cancelButton,
+    VoidCallback? onDismiss,
     IconData? icon,
   }) =>
       showDialog<T>(
@@ -55,6 +56,7 @@ class PanaraCustomDialog {
           confirmButton: confirmButton,
           cancelButton: cancelButton,
           icon: icon,
+          onDismiss: onDismiss,
         ),
       );
 
@@ -79,6 +81,7 @@ class PanaraCustomDialog {
     bool isInfo = false,
     ButtonData? confirmButton,
     ButtonData? cancelButton,
+    VoidCallback? onDismiss,
     IconData? icon,
   }) =>
       showGeneralDialog<T>(
@@ -108,6 +111,7 @@ class PanaraCustomDialog {
           confirmButton: confirmButton,
           cancelButton: cancelButton,
           icon: icon,
+          onDismiss: onDismiss,
         ),
       );
 
@@ -132,6 +136,7 @@ class PanaraCustomDialog {
     bool isInfo = false,
     ButtonData? confirmButton,
     ButtonData? cancelButton,
+    VoidCallback? onDismiss,
     IconData? icon,
   }) =>
       showGeneralDialog<T>(
@@ -161,6 +166,7 @@ class PanaraCustomDialog {
           confirmButton: confirmButton,
           cancelButton: cancelButton,
           icon: icon,
+          onDismiss: onDismiss,
         ),
       );
 
@@ -185,6 +191,7 @@ class PanaraCustomDialog {
     bool isInfo = false,
     ButtonData? confirmButton,
     ButtonData? cancelButton,
+    VoidCallback? onDismiss,
     IconData? icon,
   }) =>
       showGeneralDialog<T>(
@@ -214,6 +221,7 @@ class PanaraCustomDialog {
           confirmButton: confirmButton,
           cancelButton: cancelButton,
           icon: icon,
+          onDismiss: onDismiss,
         ),
       );
 
@@ -238,6 +246,7 @@ class PanaraCustomDialog {
     bool isInfo = false,
     ButtonData? confirmButton,
     ButtonData? cancelButton,
+    VoidCallback? onDismiss,
     IconData? icon,
   }) =>
       showGeneralDialog<T>(
@@ -267,6 +276,7 @@ class PanaraCustomDialog {
           confirmButton: confirmButton,
           cancelButton: cancelButton,
           icon: icon,
+          onDismiss: onDismiss,
         ),
       );
 
@@ -291,6 +301,7 @@ class PanaraCustomDialog {
     bool isInfo = false,
     ButtonData? confirmButton,
     ButtonData? cancelButton,
+    VoidCallback? onDismiss,
     IconData? icon,
   }) =>
       showGeneralDialog<T>(
@@ -320,6 +331,7 @@ class PanaraCustomDialog {
           confirmButton: confirmButton,
           cancelButton: cancelButton,
           icon: icon,
+          onDismiss: onDismiss,
         ),
       );
 
@@ -344,6 +356,7 @@ class PanaraCustomDialog {
     bool isInfo = false,
     ButtonData? confirmButton,
     ButtonData? cancelButton,
+    VoidCallback? onDismiss,
     IconData? icon,
   }) =>
       showGeneralDialog<T>(
@@ -373,6 +386,7 @@ class PanaraCustomDialog {
           confirmButton: confirmButton,
           cancelButton: cancelButton,
           icon: icon,
+          onDismiss: onDismiss,
         ),
       );
 
@@ -397,6 +411,7 @@ class PanaraCustomDialog {
     bool isInfo = false,
     ButtonData? confirmButton,
     ButtonData? cancelButton,
+    VoidCallback? onDismiss,
     IconData? icon,
   }) =>
       showGeneralDialog<T>(
@@ -426,6 +441,7 @@ class PanaraCustomDialog {
           confirmButton: confirmButton,
           cancelButton: cancelButton,
           icon: icon,
+          onDismiss: onDismiss,
         ),
       );
 }

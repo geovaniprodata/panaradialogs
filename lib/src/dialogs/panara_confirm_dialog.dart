@@ -35,6 +35,7 @@ class PanaraConfirmDialog {
     required String cancelButtonText,
     required VoidCallback onTapConfirm,
     required VoidCallback onTapCancel,
+    VoidCallback? onDismiss,
     required PanaraDialogType panaraDialogType,
     Color? color,
     Color? textColor,
@@ -48,6 +49,7 @@ class PanaraConfirmDialog {
         barrierDismissible: barrierDismissible,
         context: context,
         builder: (context) => PanaraConfirmDialogWidget(
+          barrierDismissable: barrierDismissible,
           noImage: noImage,
           title: title,
           message: message,
@@ -62,6 +64,7 @@ class PanaraConfirmDialog {
           imagePath: imagePath,
           margin: margin,
           padding: padding,
+          onDismiss: onDismiss,
         ),
       );
 
@@ -79,6 +82,7 @@ class PanaraConfirmDialog {
     required String cancelButtonText,
     required VoidCallback onTapConfirm,
     required VoidCallback onTapCancel,
+    VoidCallback? onDismiss,
     required PanaraDialogType panaraDialogType,
     Color? color,
     Color? textColor,
@@ -100,8 +104,7 @@ class PanaraConfirmDialog {
             child,
           );
         },
-        pageBuilder: (animation, secondaryAnimation, child) =>
-            PanaraConfirmDialogWidget(
+        pageBuilder: (animation, secondaryAnimation, child) => PanaraConfirmDialogWidget(
           title: title,
           message: message,
           confirmButtonText: confirmButtonText,
@@ -116,6 +119,8 @@ class PanaraConfirmDialog {
           margin: margin,
           padding: padding,
           noImage: noImage,
+          barrierDismissable: barrierDismissible,
+          onDismiss: onDismiss,
         ),
       );
 
@@ -133,6 +138,7 @@ class PanaraConfirmDialog {
     required String cancelButtonText,
     required VoidCallback onTapConfirm,
     required VoidCallback onTapCancel,
+    VoidCallback? onDismiss,
     required PanaraDialogType panaraDialogType,
     Color? color,
     Color? textColor,
@@ -154,8 +160,7 @@ class PanaraConfirmDialog {
             child,
           );
         },
-        pageBuilder: (animation, secondaryAnimation, child) =>
-            PanaraConfirmDialogWidget(
+        pageBuilder: (animation, secondaryAnimation, child) => PanaraConfirmDialogWidget(
           title: title,
           message: message,
           confirmButtonText: confirmButtonText,
@@ -170,6 +175,8 @@ class PanaraConfirmDialog {
           margin: margin,
           padding: padding,
           noImage: noImage,
+          barrierDismissable: barrierDismissible,
+          onDismiss: onDismiss,
         ),
       );
 
@@ -187,6 +194,7 @@ class PanaraConfirmDialog {
     required String cancelButtonText,
     required VoidCallback onTapConfirm,
     required VoidCallback onTapCancel,
+    VoidCallback? onDismiss,
     required PanaraDialogType panaraDialogType,
     Color? color,
     Color? textColor,
@@ -208,8 +216,7 @@ class PanaraConfirmDialog {
             child,
           );
         },
-        pageBuilder: (animation, secondaryAnimation, child) =>
-            PanaraConfirmDialogWidget(
+        pageBuilder: (animation, secondaryAnimation, child) => PanaraConfirmDialogWidget(
           title: title,
           message: message,
           confirmButtonText: confirmButtonText,
@@ -224,6 +231,8 @@ class PanaraConfirmDialog {
           margin: margin,
           padding: padding,
           noImage: noImage,
+          barrierDismissable: barrierDismissible,
+          onDismiss: onDismiss,
         ),
       );
 
@@ -241,6 +250,7 @@ class PanaraConfirmDialog {
     required String cancelButtonText,
     required VoidCallback onTapConfirm,
     required VoidCallback onTapCancel,
+    VoidCallback? onDismiss,
     required PanaraDialogType panaraDialogType,
     Color? color,
     Color? textColor,
@@ -262,8 +272,7 @@ class PanaraConfirmDialog {
             child,
           );
         },
-        pageBuilder: (animation, secondaryAnimation, child) =>
-            PanaraConfirmDialogWidget(
+        pageBuilder: (animation, secondaryAnimation, child) => PanaraConfirmDialogWidget(
           title: title,
           message: message,
           confirmButtonText: confirmButtonText,
@@ -278,6 +287,8 @@ class PanaraConfirmDialog {
           margin: margin,
           padding: padding,
           noImage: noImage,
+          barrierDismissable: barrierDismissible,
+          onDismiss: onDismiss,
         ),
       );
 
@@ -295,6 +306,7 @@ class PanaraConfirmDialog {
     required String cancelButtonText,
     required VoidCallback onTapConfirm,
     required VoidCallback onTapCancel,
+    VoidCallback? onDismiss,
     required PanaraDialogType panaraDialogType,
     Color? color,
     Color? textColor,
@@ -316,8 +328,7 @@ class PanaraConfirmDialog {
             child,
           );
         },
-        pageBuilder: (animation, secondaryAnimation, child) =>
-            PanaraConfirmDialogWidget(
+        pageBuilder: (animation, secondaryAnimation, child) => PanaraConfirmDialogWidget(
           title: title,
           message: message,
           confirmButtonText: confirmButtonText,
@@ -332,6 +343,8 @@ class PanaraConfirmDialog {
           margin: margin,
           padding: padding,
           noImage: noImage,
+          barrierDismissable: barrierDismissible,
+          onDismiss: onDismiss,
         ),
       );
 
@@ -349,6 +362,7 @@ class PanaraConfirmDialog {
     required String cancelButtonText,
     required VoidCallback onTapConfirm,
     required VoidCallback onTapCancel,
+    VoidCallback? onDismiss,
     required PanaraDialogType panaraDialogType,
     Color? color,
     Color? textColor,
@@ -370,8 +384,7 @@ class PanaraConfirmDialog {
             child,
           );
         },
-        pageBuilder: (animation, secondaryAnimation, child) =>
-            PanaraConfirmDialogWidget(
+        pageBuilder: (animation, secondaryAnimation, child) => PanaraConfirmDialogWidget(
           title: title,
           message: message,
           confirmButtonText: confirmButtonText,
@@ -386,6 +399,8 @@ class PanaraConfirmDialog {
           margin: margin,
           padding: padding,
           noImage: noImage,
+          barrierDismissable: barrierDismissible,
+          onDismiss: onDismiss,
         ),
       );
 
@@ -403,6 +418,7 @@ class PanaraConfirmDialog {
     required String cancelButtonText,
     required VoidCallback onTapConfirm,
     required VoidCallback onTapCancel,
+    VoidCallback? onDismiss,
     required PanaraDialogType panaraDialogType,
     Color? color,
     Color? textColor,
@@ -424,8 +440,7 @@ class PanaraConfirmDialog {
             child,
           );
         },
-        pageBuilder: (animation, secondaryAnimation, child) =>
-            PanaraConfirmDialogWidget(
+        pageBuilder: (animation, secondaryAnimation, child) => PanaraConfirmDialogWidget(
           title: title,
           message: message,
           confirmButtonText: confirmButtonText,
@@ -440,6 +455,8 @@ class PanaraConfirmDialog {
           margin: margin,
           padding: padding,
           noImage: noImage,
+          barrierDismissable: barrierDismissible,
+          onDismiss: onDismiss,
         ),
       );
 }
