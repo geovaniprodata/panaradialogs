@@ -151,7 +151,7 @@ class PanaraCustomDialogWidget extends StatelessWidget {
                   ),
                 content,
                 const SizedBox(
-                  height: 16,
+                  height: 24,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -123,28 +123,12 @@ class PanaraConfirmDialogWidget extends StatelessWidget {
                   Expanded(
                     flex: 1,
                     child: PanaraButton(
-                      onTap: onTapCancel,
-                      text: cancelButtonText,
-                      bgColor: panaraDialogType == PanaraDialogType.normal
-                          ? PanaraColors.normal
-                          : panaraDialogType == PanaraDialogType.success
-                              ? PanaraColors.success
-                              : panaraDialogType == PanaraDialogType.warning
-                                  ? PanaraColors.warning
-                                  : panaraDialogType == PanaraDialogType.error
-                                      ? PanaraColors.error
-                                      : color ?? const Color(0xFF179DFF),
-                      isOutlined: true,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 24,
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: PanaraButton(
                       buttonTextColor: buttonTextColor ?? Colors.white,
-                      onTap: onTapConfirm,
+                      onTap: () {
+                        onTapConfirm();
+
+                        Navigator.pop(context);
+                      },
                       text: confirmButtonText,
                       bgColor: panaraDialogType == PanaraDialogType.normal
                           ? PanaraColors.normal
@@ -156,6 +140,30 @@ class PanaraConfirmDialogWidget extends StatelessWidget {
                                       ? PanaraColors.error
                                       : color ?? const Color(0xFF179DFF),
                       isOutlined: false,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 24,
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: PanaraButton(
+                      onTap: () {
+                        onTapCancel();
+
+                        Navigator.pop(context);
+                      },
+                      text: cancelButtonText,
+                      bgColor: panaraDialogType == PanaraDialogType.normal
+                          ? PanaraColors.normal
+                          : panaraDialogType == PanaraDialogType.success
+                              ? PanaraColors.success
+                              : panaraDialogType == PanaraDialogType.warning
+                                  ? PanaraColors.warning
+                                  : panaraDialogType == PanaraDialogType.error
+                                      ? PanaraColors.error
+                                      : color ?? const Color(0xFF179DFF),
+                      isOutlined: true,
                     ),
                   ),
                 ],
