@@ -50,11 +50,11 @@ class PanaraCustomDialogWidget extends StatelessWidget {
       confirmButton!.buttonText ??= Strings.sim;
       var confirmFunction = confirmButton!.callback;
       confirmButton!.callback = () {
+        Navigator.pop(context);
+
         if (confirmFunction != null) {
           confirmFunction();
         }
-
-        Navigator.pop(context);
       };
     }
 
@@ -64,11 +64,11 @@ class PanaraCustomDialogWidget extends StatelessWidget {
       cancelButton!.buttonText ??= Strings.nao;
       var cancelFunction = cancelButton!.callback;
       cancelButton!.callback = () {
+        Navigator.pop(context);
+
         if (cancelFunction != null) {
           cancelFunction();
         }
-
-        Navigator.pop(context);
       };
     }
 

@@ -136,9 +136,9 @@ class PanaraConfirmDialogWidget extends StatelessWidget {
                       child: PanaraButton(
                         buttonTextColor: buttonTextColor ?? Colors.white,
                         onTap: () {
-                          onTapConfirm();
-
                           Navigator.pop(context);
+
+                          onTapConfirm();
                         },
                         text: confirmButtonText,
                         bgColor: panaraDialogType == PanaraDialogType.normal
@@ -160,9 +160,8 @@ class PanaraConfirmDialogWidget extends StatelessWidget {
                       flex: 1,
                       child: PanaraButton(
                         onTap: () {
-                          onTapCancel();
-
                           Navigator.pop(context);
+                          onTapCancel();
                         },
                         text: cancelButtonText,
                         bgColor: panaraDialogType == PanaraDialogType.normal

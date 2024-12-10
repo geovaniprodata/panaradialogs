@@ -114,7 +114,10 @@ class PanaraInfoDialogWidget extends StatelessWidget {
               PanaraButton(
                 buttonTextColor: buttonTextColor ?? Colors.white,
                 text: buttonText,
-                onTap: onTapDismiss,
+                onTap: () {
+                  Navigator.pop(context);
+                  onTapDismiss();
+                },
                 bgColor: panaraDialogType == PanaraDialogType.normal
                     ? PanaraColors.normal
                     : panaraDialogType == PanaraDialogType.success
