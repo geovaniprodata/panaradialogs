@@ -7,7 +7,7 @@ import 'package:panara_dialogs/src/widgets/panara_button.dart';
 /// A custom dialog widget that can be used to show custom content in a dialog.
 /// Fully customizable.
 ///
-class PanaraCustomDialogWidget extends StatelessWidget {
+class PanaraCustomDialogWidget extends StatefulWidget {
   final Widget content;
   final EdgeInsets? padding;
   final EdgeInsets? margin;
@@ -45,11 +45,18 @@ class PanaraCustomDialogWidget extends StatelessWidget {
     this.onDismiss,
   }) : super(key: key);
 
+  @override
+  State<PanaraCustomDialogWidget> createState() => _PanaraCustomDialogWidgetState();
+}
+
+class _PanaraCustomDialogWidgetState extends State<PanaraCustomDialogWidget> {
+  late ThemeData theme;
+
   void _checkButtons(BuildContext context) {
-    if (confirmButton != null) {
-      confirmButton!.buttonText ??= Strings.sim;
-      var confirmFunction = confirmButton!.callback;
-      confirmButton!.callback = () {
+    if (widget.confirmButton != null) {
+      widget.confirmButton!.buttonText ??= Strings.sim;
+      var confirmFunction = widget.confirmButton!.callback;
+      widget.confirmButton!.callback = () {
         Navigator.pop(context);
 
         if (confirmFunction != null) {
@@ -58,12 +65,12 @@ class PanaraCustomDialogWidget extends StatelessWidget {
       };
     }
 
-    if (cancelButton != null) {
-      cancelButton!.buttonColor ??= isInfo ? color ?? const Color(0xFF179DFF) : Colors.red.shade500;
+    if (widget.cancelButton != null) {
+      widget.cancelButton!.buttonColor ??= widget.isInfo ? widget.color ?? const Color(0xFF179DFF) : Colors.red.shade500;
 
-      cancelButton!.buttonText ??= Strings.nao;
-      var cancelFunction = cancelButton!.callback;
-      cancelButton!.callback = () {
+      widget.cancelButton!.buttonText ??= Strings.nao;
+      var cancelFunction = widget.cancelButton!.callback;
+      widget.cancelButton!.callback = () {
         Navigator.pop(context);
 
         if (cancelFunction != null) {
@@ -72,31 +79,35 @@ class PanaraCustomDialogWidget extends StatelessWidget {
       };
     }
 
-    if (confirmButton != null && cancelButton != null) {
-      if (confirmButton!.buttonText != null) {
-        var text = confirmButton!.buttonText!;
+    if (widget.confirmButton != null && widget.cancelButton != null) {
+      if (widget.confirmButton!.buttonText != null) {
+        var text = widget.confirmButton!.buttonText!;
 
-        confirmButton!.buttonText = text.passToTitle();
+        widget.confirmButton!.buttonText = text.passToTitle();
       }
 
-      if (cancelButton!.buttonText != null) {
-        var text = cancelButton!.buttonText!;
+      if (widget.cancelButton!.buttonText != null) {
+        var text = widget.cancelButton!.buttonText!;
 
-        cancelButton!.buttonText = text.passToTitle();
+        widget.cancelButton!.buttonText = text.passToTitle();
       }
     }
   }
 
   @override
-  Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
+  void initState() {
     _checkButtons(context);
+    theme = Theme.of(context);
+    super.initState();
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return PopScope(
-      canPop: barrierDismissable,
+      canPop: widget.barrierDismissable,
       onPopInvokedWithResult: (didPop, result) {
-        if (didPop && onDismiss != null) {
-          onDismiss!();
+        if (didPop && widget.onDismiss != null) {
+          widget.onDismiss!();
         }
       },
       child: Padding(
@@ -111,56 +122,56 @@ class PanaraCustomDialogWidget extends StatelessWidget {
               constraints: const BoxConstraints(
                 maxWidth: 340,
               ),
-              margin: margin ?? const EdgeInsets.all(24),
-              padding: padding ?? const EdgeInsets.all(24),
+              margin: widget.margin ?? const EdgeInsets.all(24),
+              padding: widget.padding ?? const EdgeInsets.all(24),
               decoration: BoxDecoration(
-                color: backgroundColor ?? theme.dialogBackgroundColor,
+                color: widget.backgroundColor ?? theme.dialogBackgroundColor,
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.center,
-                crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.center,
+                mainAxisAlignment: widget.mainAxisAlignment ?? MainAxisAlignment.center,
+                crossAxisAlignment: widget.crossAxisAlignment ?? CrossAxisAlignment.center,
                 children: [
-                  if (!noImage)
-                    icon != null
+                  if (!widget.noImage)
+                    widget.icon != null
                         ? Icon(
-                            icon,
+                            widget.icon,
                             size: 84,
-                            color: imagePath != null
+                            color: widget.imagePath != null
                                 ? null
-                                : (panaraDialogType == PanaraDialogType.normal
+                                : (widget.panaraDialogType == PanaraDialogType.normal
                                     ? PanaraColors.normal
-                                    : panaraDialogType == PanaraDialogType.success
+                                    : widget.panaraDialogType == PanaraDialogType.success
                                         ? PanaraColors.success
-                                        : panaraDialogType == PanaraDialogType.warning
+                                        : widget.panaraDialogType == PanaraDialogType.warning
                                             ? PanaraColors.warning
-                                            : panaraDialogType == PanaraDialogType.error
+                                            : widget.panaraDialogType == PanaraDialogType.error
                                                 ? PanaraColors.error
-                                                : color),
+                                                : widget.color),
                           )
                         : Image.asset(
-                            imagePath ?? 'assets/${isInfo ? 'info' : 'confirm'}.png',
-                            package: imagePath != null ? null : 'panara_dialogs',
+                            widget.imagePath ?? 'assets/${widget.isInfo ? 'info' : 'confirm'}.png',
+                            package: widget.imagePath != null ? null : 'panara_dialogs',
                             width: 84,
                             height: 84,
-                            color: imagePath != null
+                            color: widget.imagePath != null
                                 ? null
-                                : (panaraDialogType == PanaraDialogType.normal
+                                : (widget.panaraDialogType == PanaraDialogType.normal
                                     ? PanaraColors.normal
-                                    : panaraDialogType == PanaraDialogType.success
+                                    : widget.panaraDialogType == PanaraDialogType.success
                                         ? PanaraColors.success
-                                        : panaraDialogType == PanaraDialogType.warning
+                                        : widget.panaraDialogType == PanaraDialogType.warning
                                             ? PanaraColors.warning
-                                            : panaraDialogType == PanaraDialogType.error
+                                            : widget.panaraDialogType == PanaraDialogType.error
                                                 ? PanaraColors.error
-                                                : color),
+                                                : widget.color),
                           ),
-                  if (!noImage)
+                  if (!widget.noImage)
                     const SizedBox(
                       height: 24,
                     ),
-                  content,
+                  widget.content,
                   const SizedBox(
                     height: 24,
                   ),
@@ -169,43 +180,43 @@ class PanaraCustomDialogWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: []
                       ..insertIf(
-                        confirmButton != null,
+                        widget.confirmButton != null,
                         0,
                         Expanded(
                           flex: 1,
                           child: PanaraButton(
-                            onTap: confirmButton?.callback,
-                            text: confirmButton?.buttonText ?? Strings.sim,
-                            bgColor: confirmButton?.buttonColor ??
-                                (panaraDialogType == PanaraDialogType.normal
+                            onTap: widget.confirmButton?.callback,
+                            text: widget.confirmButton?.buttonText ?? Strings.sim,
+                            bgColor: widget.confirmButton?.buttonColor ??
+                                (widget.panaraDialogType == PanaraDialogType.normal
                                     ? PanaraColors.normal
-                                    : panaraDialogType == PanaraDialogType.success
+                                    : widget.panaraDialogType == PanaraDialogType.success
                                         ? PanaraColors.success
-                                        : panaraDialogType == PanaraDialogType.warning
+                                        : widget.panaraDialogType == PanaraDialogType.warning
                                             ? PanaraColors.warning
-                                            : panaraDialogType == PanaraDialogType.error
+                                            : widget.panaraDialogType == PanaraDialogType.error
                                                 ? PanaraColors.error
-                                                : color ?? const Color(0xFF179DFF)),
+                                                : widget.color ?? const Color(0xFF179DFF)),
                             isOutlined: true,
                           ),
                         ),
                       )
                       ..insertIf(
-                        (confirmButton != null && cancelButton != null),
+                        (widget.confirmButton != null && widget.cancelButton != null),
                         1,
                         const SizedBox(
                           width: 24,
                         ),
                       )
                       ..insertIf(
-                        cancelButton != null,
+                        widget.cancelButton != null,
                         2,
                         Expanded(
                           flex: 1,
                           child: PanaraButton(
-                            onTap: cancelButton?.callback,
-                            text: cancelButton?.buttonText ?? Strings.nao,
-                            bgColor: cancelButton?.buttonColor ?? const Color(0xFF179DFF),
+                            onTap: widget.cancelButton?.callback,
+                            text: widget.cancelButton?.buttonText ?? Strings.nao,
+                            bgColor: widget.cancelButton?.buttonColor ?? const Color(0xFF179DFF),
                             isOutlined: false,
                           ),
                         ),
