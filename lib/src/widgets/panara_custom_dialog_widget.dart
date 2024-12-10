@@ -50,7 +50,7 @@ class PanaraCustomDialogWidget extends StatefulWidget {
 }
 
 class _PanaraCustomDialogWidgetState extends State<PanaraCustomDialogWidget> {
-  late ThemeData theme;
+  // late ThemeData theme;
 
   void _checkButtons(BuildContext context) {
     if (widget.confirmButton != null) {
@@ -96,9 +96,9 @@ class _PanaraCustomDialogWidgetState extends State<PanaraCustomDialogWidget> {
 
   @override
   void initState() {
-    _checkButtons(context);
-    theme = Theme.of(context);
     super.initState();
+
+    _checkButtons(context);
   }
 
   @override
@@ -125,7 +125,7 @@ class _PanaraCustomDialogWidgetState extends State<PanaraCustomDialogWidget> {
               margin: widget.margin ?? const EdgeInsets.all(24),
               padding: widget.padding ?? const EdgeInsets.all(24),
               decoration: BoxDecoration(
-                color: widget.backgroundColor ?? theme.dialogBackgroundColor,
+                color: widget.backgroundColor ?? Theme.of(context).dialogBackgroundColor,
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Column(
